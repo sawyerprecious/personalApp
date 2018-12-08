@@ -21,9 +21,12 @@ class PersonalAppTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testInitializationOfSchedule() {
+        let randomTitleSchedule = ScheduleItem.init(title: "Random", desc: "OK", date: Date.init())
+        XCTAssertNotNil(randomTitleSchedule)
+        
+        let emptyTitleSchedule = ScheduleItem.init(title: "", desc: "bad", date: Date.init())
+        XCTAssertNil(emptyTitleSchedule)
     }
     
     func testPerformanceExample() {
