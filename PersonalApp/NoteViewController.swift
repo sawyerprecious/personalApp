@@ -32,6 +32,7 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
     var note: Note?
     
     

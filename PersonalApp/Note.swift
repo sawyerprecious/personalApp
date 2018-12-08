@@ -33,6 +33,7 @@ class Note: NSObject, NSCoding {
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("notes")
     
+    
     var name: String
     var contents: String
     

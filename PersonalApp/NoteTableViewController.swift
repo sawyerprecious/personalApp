@@ -116,6 +116,7 @@ class NoteTableViewController: UITableViewController {
         }
     }
     
+    
     private func loadNotes() -> [Note]?  {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Note.ArchiveURL.path) as? [Note]
     }

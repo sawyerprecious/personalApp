@@ -48,6 +48,7 @@ class Recipe: NSObject, NSCoding {
     var ingredients: String?
     var instructions: String?
     
+    
     init?(mealName:String, foodImage:UIImage, ingredients:String, instructions:String){
         
         if mealName.isEmpty{

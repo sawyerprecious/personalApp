@@ -23,6 +23,7 @@ class ScheduleItem: NSObject, NSCoding{
         aCoder.encode(min, forKey: propertyKey.min)
     }
     
+    
     required convenience init?(coder aDecoder: NSCoder) {
         guard let title = aDecoder.decodeObject(forKey: propertyKey.title) as? String else {
             os_log("Unable to decode the title for a Schedule object.", log: OSLog.default, type: .debug)

@@ -153,11 +153,13 @@ class RecipeViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         saveButton.isEnabled = false
     }
     
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
         return true
     }
+    
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateSaveButtonState()
