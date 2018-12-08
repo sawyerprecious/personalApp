@@ -56,35 +56,21 @@ class ScheduleViewController: UIViewController, UITextFieldDelegate, UITextViewD
             return
         }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY"
-        let dYear:String = dateFormatter.string(from: self.dateTimeField.date)
-        dateFormatter.dateFormat = "MM"
-        let dMonth:String = dateFormatter.string(from: self.dateTimeField.date)
-        dateFormatter.dateFormat = "dd"
-        let dDay:String = dateFormatter.string(from: self.dateTimeField.date)
-        dateFormatter.dateFormat = "HH"
-        let dHour:String = dateFormatter.string(from: self.dateTimeField.date)
-        dateFormatter.dateFormat = "mm"
-        let dMinute:String = dateFormatter.string(from: self.dateTimeField.date)
         
         let title = titleTextField.text ?? ""
         let desc = descTextField.text ?? ""
-        let year = dYear
-        let month = dMonth
-        let day = dDay
-        let hour = dHour
-        let min = dMinute
+        let day = self.dateTimeField.date
         
         
      
-        scheduleItem = ScheduleItem(title: title, desc: desc, year: year, month: month, day: day, hour: hour, min:min)
+        scheduleItem = ScheduleItem(title: title, desc: desc, day: day)
         
         let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: dateTimeField.date)
         
         let db = dateTimeField.calendar.date(byAdding: .day, value: -1, to: dateTimeField.date)
         
         pushManager.sendLocalPush(on: triggerDate, withMessage: titleTextField.text ?? "", db: db!)
+        
     }
     
     
@@ -106,7 +92,7 @@ class ScheduleViewController: UIViewController, UITextFieldDelegate, UITextViewD
             descTextField.text = scheduleItem.desc
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let str = scheduleItem.year + "-" + scheduleItem.month + "-" + scheduleItem.day + " " + scheduleItem.hour + ":" + scheduleItem.min + ":00"
+            let str = String(scheduleItem.day.year) + "-" + String(scheduleItem.day.month) + "-" + String(scheduleItem.day.day) + " " + String(scheduleItem.day.hour) + ":" + String(scheduleItem.day.min) + ":00"
             dateTimeField.date = dateFormatter.date(from: str)!
         }
         

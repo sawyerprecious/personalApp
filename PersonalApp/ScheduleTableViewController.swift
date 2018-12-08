@@ -44,6 +44,7 @@ class ScheduleTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scheduleList.count
     }
+    
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,38 +62,16 @@ class ScheduleTableViewController: UITableViewController {
         var isDue: Bool = false
         var isClose: Bool = false
         
-        let currDate = NSDate()
+        let currDate = Date()
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY"
-        let cYear:String = dateFormatter.string(from: currDate as Date)
-        dateFormatter.dateFormat = "MM"
-        let cMonth:String = dateFormatter.string(from: currDate as Date)
-        dateFormatter.dateFormat = "dd"
-        let cDay:String = dateFormatter.string(from: currDate as Date)
-        
-        if (Int(cDay)! >= Int(aSchedule.day)! - 1 && cMonth == aSchedule.month && cYear == aSchedule.year) || (Int(cYear)! > Int(aSchedule.year)!) || (Int(cYear)! == Int(aSchedule.year)! && Int(cMonth)! > Int(aSchedule.month)!){
-            isDue = true
-        }else if Int(cDay)! - Int(aSchedule.day)! >= 28 && Int(cMonth)! == Int(aSchedule.month)! - 1 && Int(cYear)! - Int(aSchedule.year)! == 0{
-            isDue = true
-            if cMonth != "02"{
-                if Int(cDay)! - Int(aSchedule.day)! < 30{
-                    if cMonth == "01" || cMonth == "03" || cMonth == "05" || cMonth == "07" || cMonth == "08" || cMonth == "10" || cMonth == "12"{
-                        isDue = false
-                    }
-                }
-            }
-        }else if Int(cDay)! - Int(aSchedule.day)! >= 28 && Int(cMonth)! == Int(aSchedule.month)! - 1 && Int(cYear)! - Int(aSchedule.year)! == -1{
+        if currDate.dayAfter >= aSchedule.day {
             isDue = true
         }
         
-        if Int(aSchedule.day)! - Int(cDay)! <= 7 && cMonth == aSchedule.month && cYear == aSchedule.year{
-            isClose = true
-        }else if Int(cDay)! - Int(aSchedule.day)! >= 23 && Int(cMonth)! == Int(aSchedule.month)! - 1 && cYear == aSchedule.year{
-            isClose = true
-        }else if Int(cDay)! - Int(aSchedule.day)! >= 23 && Int(cMonth)! == Int(aSchedule.month)! - 1 && Int(cYear)! - Int(aSchedule.year)! == -1{
+        if currDate.weekAfter > aSchedule.day {
             isClose = true
         }
+        
         
         if isDue{
             cell.alertImage.alpha = 1
@@ -108,30 +87,30 @@ class ScheduleTableViewController: UITableViewController {
         
         var m:String
         
-        switch aSchedule.month {
-        case "01":
+        switch aSchedule.day.month {
+        case 01:
             m = "January"
-        case "02":
+        case 02:
             m = "February"
-        case "03":
+        case 03:
             m = "March"
-        case "04":
+        case 04:
             m = "April"
-        case "05":
+        case 05:
             m = "May"
-        case "06":
+        case 06:
             m = "June"
-        case "07":
+        case 07:
             m = "July"
-        case "08":
+        case 08:
             m = "August"
-        case "09":
+        case 09:
             m = "September"
-        case "10":
+        case 10:
             m = "October"
-        case "11":
+        case 11:
             m = "November"
-        case "12":
+        case 12:
             m = "December"
         default:
             m = "January"
@@ -139,21 +118,19 @@ class ScheduleTableViewController: UITableViewController {
         
         
         cell.titleLabel.text = aSchedule.title
-        cell.dateLabel.text = m + " " + aSchedule.day
+        cell.dateLabel.text = m + " " + String(aSchedule.day.day)
         
         
         return cell
     }
     
-    func sortSchedule(){
+    
+    func sortSchedule() {
+        
+        tableView.reloadData()
+        
         scheduleList = scheduleList.sorted(by: {(si1, si2) -> Bool in
-            if (si1.year != si2.year){
-                return si1.year < si2.year
-            }else if (si1.month != si2.month){
-                return si1.month < si2.month
-            }else{
-                return si1.day < si2.day
-            }
+            return si1.day < si2.day
         })
         
     }
@@ -172,6 +149,7 @@ class ScheduleTableViewController: UITableViewController {
             
                 scheduleList.append(scheduleItem)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
+                sortSchedule()
             
             }
             
@@ -182,7 +160,7 @@ class ScheduleTableViewController: UITableViewController {
     }
     
     private func loadSampleSchedule() {
-        guard let s1 = ScheduleItem(title: "sample", desc: "sample item", year: "2018", month: "01", day: "01", hour: "7", min:"15") else {
+        guard let s1 = ScheduleItem(title: "sample", desc: "sample item", day: Date()) else {
             fatalError("unable to instantiate")
         }
         
@@ -192,8 +170,10 @@ class ScheduleTableViewController: UITableViewController {
     
     private func saveScheduleList() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(scheduleList, toFile: ScheduleItem.ArchiveURL.path)
+        
         if isSuccessfulSave {
             os_log("ScheduleList successfully saved.", log: OSLog.default, type: .debug)
+
         } else {
             os_log("Failed to save ScheduleList...", log: OSLog.default, type: .error)
         }
@@ -259,4 +239,37 @@ class ScheduleTableViewController: UITableViewController {
     }
     
 
+}
+
+extension Date {
+    var dayAfter: Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: noon)!
+    }
+    var weekAfter: Date {
+        return Calendar.current.date(byAdding: .day, value: 7, to: noon)!
+    }
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+    }
+    var month: Int {
+        return Calendar.current.component(.month,  from: self)
+    }
+    var day: Int {
+        return Calendar.current.component(.day, from: self)
+    }
+    var year: Int {
+        return Calendar.current.component(.year, from: self)
+    }
+    var hour: Int {
+        return Calendar.current.component(.hour, from: self)
+    }
+    var min: Int {
+        return Calendar.current.component(.minute, from: self)
+    }
+    var isLastDayOfMonth: Bool {
+        return dayAfter.month != month
+    }
+    var isLastWeekOfMonth: Bool {
+        return weekAfter.month != month
+    }
 }
