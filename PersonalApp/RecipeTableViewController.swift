@@ -12,7 +12,6 @@ import os.log
 class RecipeTableViewController: UITableViewController {
     
     
-    
     var recipes = [Recipe]()
     
 
