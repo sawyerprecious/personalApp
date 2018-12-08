@@ -22,10 +22,10 @@ class PersonalAppTests: XCTestCase {
     }
     
     func testInitializationOfSchedule() {
-        let randomTitleSchedule = ScheduleItem.init(title: "Random", desc: "OK", date: Date.init())
+        let randomTitleSchedule = ScheduleItem.init(title: "random", desc: "", year: "2018", month: "03", day: "03", hour: "12", min: "00")
         XCTAssertNotNil(randomTitleSchedule)
         
-        let emptyTitleSchedule = ScheduleItem.init(title: "", desc: "bad", date: Date.init())
+        let emptyTitleSchedule = ScheduleItem.init(title: "", desc: "bad", year: "2018", month: "03", day: "03", hour: "12", min: "00")
         XCTAssertNil(emptyTitleSchedule)
     }
     
