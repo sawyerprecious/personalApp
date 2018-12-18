@@ -28,6 +28,7 @@ class ScheduleTableViewController: UITableViewController {
         
         sortSchedule()
 
+        tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {

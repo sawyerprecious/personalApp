@@ -28,6 +28,8 @@ class RecipeTableViewController: UITableViewController {
         }
         super.viewDidLoad()
         
+        tableView.tableFooterView = UIView()
+        
          // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
