@@ -83,4 +83,6 @@ enum map: Int {
     case schedule = 0
     case notes = 1
     case recipes = 2
+    case checklist = 3
+    case game = 4
 }

@@ -9,8 +9,9 @@
 import UIKit
 import os.log
 
-class NoteViewController: UIViewController, UITextFieldDelegate {
+class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
+    let placeholder = "Enter a note here"
     
     @IBOutlet weak var noteName: UITextField!
     
@@ -43,11 +44,22 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         noteName.delegate = self
+        noteContents.delegate = self
+        
+        noteContents.text = placeholder
+        noteContents.textColor = UIColor.lightGray
         
         if let note = note{
             navigationItem.title = note.name
             noteName.text = note.name
             noteContents.text = note.contents
+            noteContents.textColor = .black
+        }
+        
+        
+        if note?.contents == "" {
+            noteContents.text = placeholder
+            noteContents.textColor = UIColor.lightGray
         }
         
         updateSaveButtonState()
@@ -81,7 +93,12 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         }
         
         let name = noteName.text ?? ""
-        let contents = noteContents.text ?? ""
+        var contents = noteContents.text ?? ""
+        
+        
+        if contents == placeholder {
+            contents = ""
+        }
         
         note = Note(name: name, contents: contents)
     }
@@ -100,6 +117,20 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateSaveButtonState()
         navigationItem.title = textField.text
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = placeholder
+            textView.textColor = UIColor.lightGray
+        }
     }
     
     

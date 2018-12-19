@@ -11,7 +11,7 @@ import os.log
 
 class ScheduleViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
-    
+    let placeholderDesc = "Add more information here"
 
     let pushManager = LocalPushManager.shared
     
@@ -58,9 +58,12 @@ class ScheduleViewController: UIViewController, UITextFieldDelegate, UITextViewD
         
         
         let title = titleTextField.text ?? ""
-        let desc = descTextField.text ?? ""
+        var desc = descTextField.text ?? ""
         let day = self.dateTimeField.date
         
+        if desc == placeholderDesc {
+            desc = ""
+        }
         
      
         scheduleItem = ScheduleItem(title: title, desc: desc, day: day)
@@ -84,16 +87,23 @@ class ScheduleViewController: UIViewController, UITextFieldDelegate, UITextViewD
         titleTextField.delegate = self
         descTextField.delegate = self
         
+        descTextField.text = placeholderDesc
+        descTextField.textColor = UIColor.lightGray
         
-        
-        if let scheduleItem = scheduleItem{
+        if let scheduleItem = scheduleItem {
             navigationItem.title = scheduleItem.title
             titleTextField.text = scheduleItem.title
             descTextField.text = scheduleItem.desc
+            descTextField.textColor = .black
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let str = String(scheduleItem.day.year) + "-" + String(scheduleItem.day.month) + "-" + String(scheduleItem.day.day) + " " + String(scheduleItem.day.hour) + ":" + String(scheduleItem.day.min) + ":00"
             dateTimeField.date = dateFormatter.date(from: str)!
+            
+            if scheduleItem.desc == "" {
+                descTextField.text = placeholderDesc
+                descTextField.textColor = UIColor.lightGray
+            }
         }
         
         
@@ -124,14 +134,21 @@ class ScheduleViewController: UIViewController, UITextFieldDelegate, UITextViewD
         navigationItem.title = textField.text
     }
     
-    
-    
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
     }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = placeholderDesc
+            textView.textColor = UIColor.lightGray
+        }
+    }
+    
+    
     
     
     private func updateSaveButtonState() {

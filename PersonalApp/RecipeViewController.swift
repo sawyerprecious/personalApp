@@ -9,8 +9,10 @@
 import UIKit
 import os.log
 
-class RecipeViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class RecipeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    let ingredientPlaceholder = "Enter ingredients here"
+    let instructionsPlaceholder = "Enter instructions here"
     
     @IBOutlet weak var mealNameTextField: UITextField!
     
@@ -102,10 +104,16 @@ class RecipeViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         
         let mealName: String = mealNameTextField.text ?? ""
         let foodImage: UIImage = imageField.image ?? #imageLiteral(resourceName: "No Image")
-        let ingredients:String = ingredientsField.text
-        let instructions:String = instructionsField.text
+        var ingredients: String = ingredientsField.text
+        var instructions: String = instructionsField.text
         
+        if ingredients == ingredientPlaceholder {
+            ingredients = ""
+        }
         
+        if instructions == instructionsPlaceholder {
+            instructions = ""
+        }
         
         recipe = Recipe(mealName: mealName, foodImage: foodImage, ingredients: ingredients, instructions: instructions)
     }
@@ -116,16 +124,35 @@ class RecipeViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         super.viewDidLoad()
         
         
+        ingredientsField.text = ingredientPlaceholder
+        ingredientsField.textColor = UIColor.lightGray
+        
+        instructionsField.text = instructionsPlaceholder
+        instructionsField.textColor = UIColor.lightGray
+        
         mealNameTextField.delegate = self
+        ingredientsField.delegate = self
+        instructionsField.delegate = self
         
         if let recipe = recipe{
             navigationItem.title = recipe.mealName
             mealNameTextField.text = recipe.mealName
             imageField.image = recipe.foodImage
             ingredientsField.text = recipe.ingredients
+            ingredientsField.textColor = .black
             instructionsField.text = recipe.instructions
+            instructionsField.textColor = .black
         }
         
+        if recipe?.ingredients == "" {
+            ingredientsField.text = ingredientPlaceholder
+            ingredientsField.textColor = UIColor.lightGray
+        }
+        
+        if recipe?.instructions == "" {
+            instructionsField.text = instructionsPlaceholder
+            instructionsField.textColor = UIColor.lightGray
+        }
         
         updateSaveButtonState()
     }
@@ -164,6 +191,20 @@ class RecipeViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateSaveButtonState()
         navigationItem.title = textField.text
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = (textView == ingredientsField) ? ingredientPlaceholder : instructionsPlaceholder
+            textView.textColor = UIColor.lightGray
+        }
     }
     
     
