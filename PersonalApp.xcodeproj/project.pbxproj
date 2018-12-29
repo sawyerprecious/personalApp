@@ -28,7 +28,14 @@
 		69D3A83321C964480036CA6F /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D3A83221C964480036CA6F /* MainMenuView.swift */; };
 		69D3A83621C9666E0036CA6F /* MainMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D3A83421C9666E0036CA6F /* MainMenuTableViewCell.swift */; };
 		69D3A83721C9666E0036CA6F /* MainMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D3A83521C9666E0036CA6F /* MainMenuTableViewCell.xib */; };
+		69D3A83A21CAD7BA0036CA6F /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D3A83821CAD7BA0036CA6F /* ChecklistViewController.swift */; };
+		69D3A83B21CAD7BA0036CA6F /* ChecklistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D3A83921CAD7BA0036CA6F /* ChecklistViewController.xib */; };
+		69D3A83E21CAD9F50036CA6F /* ChecklistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D3A83C21CAD9F50036CA6F /* ChecklistTableViewCell.swift */; };
+		69D3A83F21CAD9F50036CA6F /* ChecklistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D3A83D21CAD9F50036CA6F /* ChecklistTableViewCell.xib */; };
+		69D3A84121CBF0360036CA6F /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D3A84021CBF0330036CA6F /* ChecklistItem.swift */; };
 		69E5BAE7212A0E1F009F063E /* LocalPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E5BAE6212A0E1F009F063E /* LocalPushManager.swift */; };
+		69F9D83E21CC2A7300A90C0F /* AddChecklistItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F9D83C21CC2A7300A90C0F /* AddChecklistItemViewController.swift */; };
+		69F9D83F21CC2A7300A90C0F /* AddChecklistItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69F9D83D21CC2A7300A90C0F /* AddChecklistItemViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +83,14 @@
 		69D3A83221C964480036CA6F /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		69D3A83421C9666E0036CA6F /* MainMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTableViewCell.swift; sourceTree = "<group>"; };
 		69D3A83521C9666E0036CA6F /* MainMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuTableViewCell.xib; sourceTree = "<group>"; };
+		69D3A83821CAD7BA0036CA6F /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
+		69D3A83921CAD7BA0036CA6F /* ChecklistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChecklistViewController.xib; sourceTree = "<group>"; };
+		69D3A83C21CAD9F50036CA6F /* ChecklistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistTableViewCell.swift; sourceTree = "<group>"; };
+		69D3A83D21CAD9F50036CA6F /* ChecklistTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChecklistTableViewCell.xib; sourceTree = "<group>"; };
+		69D3A84021CBF0330036CA6F /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		69E5BAE6212A0E1F009F063E /* LocalPushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushManager.swift; sourceTree = "<group>"; };
+		69F9D83C21CC2A7300A90C0F /* AddChecklistItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChecklistItemViewController.swift; sourceTree = "<group>"; };
+		69F9D83D21CC2A7300A90C0F /* AddChecklistItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddChecklistItemViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +159,13 @@
 				69D3A83221C964480036CA6F /* MainMenuView.swift */,
 				69D3A83421C9666E0036CA6F /* MainMenuTableViewCell.swift */,
 				69D3A83521C9666E0036CA6F /* MainMenuTableViewCell.xib */,
+				69D3A84021CBF0330036CA6F /* ChecklistItem.swift */,
+				69D3A83821CAD7BA0036CA6F /* ChecklistViewController.swift */,
+				69D3A83921CAD7BA0036CA6F /* ChecklistViewController.xib */,
+				69D3A83C21CAD9F50036CA6F /* ChecklistTableViewCell.swift */,
+				69D3A83D21CAD9F50036CA6F /* ChecklistTableViewCell.xib */,
+				69F9D83C21CC2A7300A90C0F /* AddChecklistItemViewController.swift */,
+				69F9D83D21CC2A7300A90C0F /* AddChecklistItemViewController.xib */,
 				6959804D20A4B28600732DD6 /* Assets.xcassets */,
 				6959804F20A4B28600732DD6 /* LaunchScreen.storyboard */,
 				6959805220A4B28600732DD6 /* Info.plist */,
@@ -277,9 +298,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69F9D83F21CC2A7300A90C0F /* AddChecklistItemViewController.xib in Resources */,
+				69D3A83F21CAD9F50036CA6F /* ChecklistTableViewCell.xib in Resources */,
 				6959805120A4B28600732DD6 /* LaunchScreen.storyboard in Resources */,
 				6959804E20A4B28600732DD6 /* Assets.xcassets in Resources */,
 				6959804C20A4B28600732DD6 /* Main.storyboard in Resources */,
+				69D3A83B21CAD7BA0036CA6F /* ChecklistViewController.xib in Resources */,
 				69D3A83721C9666E0036CA6F /* MainMenuTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +336,8 @@
 				6959807D20A795E400732DD6 /* ScheduleTableViewCell.swift in Sources */,
 				6959808B20AB7D8900732DD6 /* RecipeTableViewCell.swift in Sources */,
 				6959808120AA01CB00732DD6 /* Note.swift in Sources */,
+				69D3A83A21CAD7BA0036CA6F /* ChecklistViewController.swift in Sources */,
+				69F9D83E21CC2A7300A90C0F /* AddChecklistItemViewController.swift in Sources */,
 				6959804920A4B28600732DD6 /* ScheduleViewController.swift in Sources */,
 				6959808D20AB7DAE00732DD6 /* RecipeTableViewController.swift in Sources */,
 				69E5BAE7212A0E1F009F063E /* LocalPushManager.swift in Sources */,
@@ -320,6 +346,8 @@
 				6959807F20A938E100732DD6 /* NoteTableViewController.swift in Sources */,
 				6959804720A4B28600732DD6 /* AppDelegate.swift in Sources */,
 				6959807920A7703100732DD6 /* ScheduleItem.swift in Sources */,
+				69D3A83E21CAD9F50036CA6F /* ChecklistTableViewCell.swift in Sources */,
+				69D3A84121CBF0360036CA6F /* ChecklistItem.swift in Sources */,
 				6959808720AB7D4A00732DD6 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

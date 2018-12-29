@@ -65,4 +65,60 @@ class LocalPushManager: NSObject {
         })
     }
     
+    func sendRepeatingLocalPush(timeOfDay: Int, taskList: [ChecklistItem]) {
+        let content = UNMutableNotificationContent()
+        
+        var dateComponents = DateComponents()
+        
+        switch timeOfDay {
+        case 1:
+            content.title = "You have midday tasks to do"
+            dateComponents.hour = 12
+            dateComponents.minute = 30
+        case 2:
+            content.title = "You have evening tasks to do"
+            dateComponents.hour = 20
+            dateComponents.minute = 30
+        default:
+            content.title = "You have morning tasks to do"
+            dateComponents.hour = 8
+            dateComponents.minute = 30
+        }
+        
+        var msg = "Tasks are: "
+        
+        var temp = taskList
+        temp.removeLast()
+        
+        for task in temp {
+            msg += task.itemName + ", "
+        }
+        
+        if taskList.count >= 2 {
+            msg += "and " + (taskList.last?.itemName)!
+        } else {
+            msg += taskList.last?.itemName ?? ""
+        }
+        
+        content.body = msg
+        
+        let trigger = UNCalendarNotificationTrigger(
+            dateMatching: dateComponents,
+            repeats: true)
+        
+        
+        let identifier = "checklist" + String(content.title)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        centre.add(request, withCompletionHandler: {(error) in
+            if error != nil {
+                print("Something went wrong adding request to notif centre.")
+            }
+        })
+    }
+    
+    func removeRequest(withID: String) {
+        centre.removePendingNotificationRequests(withIdentifiers: [withID])
+    }
+    
 }

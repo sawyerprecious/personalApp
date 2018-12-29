@@ -10,7 +10,7 @@ import UIKit
 import os.log
 
 
-class ScheduleItem: NSObject, NSCoding{
+class ScheduleItem: NSObject, NSCoding {
     
     
     func encode(with aCoder: NSCoder) {
