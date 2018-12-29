@@ -143,29 +143,11 @@
 			children = (
 				6959804620A4B28600732DD6 /* AppDelegate.swift */,
 				69E5BAE6212A0E1F009F063E /* LocalPushManager.swift */,
-				6959804820A4B28600732DD6 /* ScheduleViewController.swift */,
-				6959807820A7703100732DD6 /* ScheduleItem.swift */,
-				6959807C20A795E400732DD6 /* ScheduleTableViewCell.swift */,
-				6959807A20A7949D00732DD6 /* ScheduleTableViewController.swift */,
-				6959808220AA01FB00732DD6 /* NoteViewController.swift */,
-				6959808020AA01CB00732DD6 /* Note.swift */,
-				6959808420AA022500732DD6 /* NoteTableViewCell.swift */,
-				6959807E20A938E100732DD6 /* NoteTableViewController.swift */,
-				6959808820AB7D6C00732DD6 /* RecipeViewController.swift */,
-				6959808620AB7D4A00732DD6 /* Recipe.swift */,
-				6959808A20AB7D8900732DD6 /* RecipeTableViewCell.swift */,
-				6959808C20AB7DAE00732DD6 /* RecipeTableViewController.swift */,
-				6959804A20A4B28600732DD6 /* Main.storyboard */,
-				69D3A83221C964480036CA6F /* MainMenuView.swift */,
-				69D3A83421C9666E0036CA6F /* MainMenuTableViewCell.swift */,
-				69D3A83521C9666E0036CA6F /* MainMenuTableViewCell.xib */,
-				69D3A84021CBF0330036CA6F /* ChecklistItem.swift */,
-				69D3A83821CAD7BA0036CA6F /* ChecklistViewController.swift */,
-				69D3A83921CAD7BA0036CA6F /* ChecklistViewController.xib */,
-				69D3A83C21CAD9F50036CA6F /* ChecklistTableViewCell.swift */,
-				69D3A83D21CAD9F50036CA6F /* ChecklistTableViewCell.xib */,
-				69F9D83C21CC2A7300A90C0F /* AddChecklistItemViewController.swift */,
-				69F9D83D21CC2A7300A90C0F /* AddChecklistItemViewController.xib */,
+				699237F521D7DCB50097EEFB /* Schedule */,
+				699237F621D7DCC70097EEFB /* Note */,
+				699237F721D7DCDA0097EEFB /* Recipe */,
+				699237F821D7DCEF0097EEFB /* Main menu */,
+				699237F921D7DD080097EEFB /* Checklist */,
 				6959804D20A4B28600732DD6 /* Assets.xcassets */,
 				6959804F20A4B28600732DD6 /* LaunchScreen.storyboard */,
 				6959805220A4B28600732DD6 /* Info.plist */,
@@ -189,6 +171,64 @@
 				6959806820A4B28600732DD6 /* Info.plist */,
 			);
 			path = PersonalAppUITests;
+			sourceTree = "<group>";
+		};
+		699237F521D7DCB50097EEFB /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				6959804820A4B28600732DD6 /* ScheduleViewController.swift */,
+				6959807820A7703100732DD6 /* ScheduleItem.swift */,
+				6959807C20A795E400732DD6 /* ScheduleTableViewCell.swift */,
+				6959807A20A7949D00732DD6 /* ScheduleTableViewController.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		699237F621D7DCC70097EEFB /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				6959808220AA01FB00732DD6 /* NoteViewController.swift */,
+				6959808020AA01CB00732DD6 /* Note.swift */,
+				6959808420AA022500732DD6 /* NoteTableViewCell.swift */,
+				6959807E20A938E100732DD6 /* NoteTableViewController.swift */,
+			);
+			path = Note;
+			sourceTree = "<group>";
+		};
+		699237F721D7DCDA0097EEFB /* Recipe */ = {
+			isa = PBXGroup;
+			children = (
+				6959808820AB7D6C00732DD6 /* RecipeViewController.swift */,
+				6959808620AB7D4A00732DD6 /* Recipe.swift */,
+				6959808A20AB7D8900732DD6 /* RecipeTableViewCell.swift */,
+				6959808C20AB7DAE00732DD6 /* RecipeTableViewController.swift */,
+			);
+			path = Recipe;
+			sourceTree = "<group>";
+		};
+		699237F821D7DCEF0097EEFB /* Main menu */ = {
+			isa = PBXGroup;
+			children = (
+				6959804A20A4B28600732DD6 /* Main.storyboard */,
+				69D3A83221C964480036CA6F /* MainMenuView.swift */,
+				69D3A83421C9666E0036CA6F /* MainMenuTableViewCell.swift */,
+				69D3A83521C9666E0036CA6F /* MainMenuTableViewCell.xib */,
+			);
+			path = "Main menu";
+			sourceTree = "<group>";
+		};
+		699237F921D7DD080097EEFB /* Checklist */ = {
+			isa = PBXGroup;
+			children = (
+				69D3A84021CBF0330036CA6F /* ChecklistItem.swift */,
+				69D3A83821CAD7BA0036CA6F /* ChecklistViewController.swift */,
+				69D3A83921CAD7BA0036CA6F /* ChecklistViewController.xib */,
+				69D3A83C21CAD9F50036CA6F /* ChecklistTableViewCell.swift */,
+				69D3A83D21CAD9F50036CA6F /* ChecklistTableViewCell.xib */,
+				69F9D83C21CC2A7300A90C0F /* AddChecklistItemViewController.swift */,
+				69F9D83D21CC2A7300A90C0F /* AddChecklistItemViewController.xib */,
+			);
+			path = Checklist;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
